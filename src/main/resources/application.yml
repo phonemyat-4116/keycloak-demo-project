@@ -6,8 +6,22 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://127.0.0.1:8080/realms/myrealm
+          issuer-uri: http://localhost:8080/realms/myrealm
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
 
 server:
   port: 8081
+
+logging:
+  level:
+    org.springframework.security : DEBUG
+    org.springframework.security.oauth2 : TRACE
+
+jwt:
+  auth:
+    converter:
+      resource-id: ticket-rest-api
+      principle-attribute: preferred_username
+
+
